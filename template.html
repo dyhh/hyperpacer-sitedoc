@@ -19,6 +19,7 @@
       <div class="col-sm-3" id="accordion">
         <%
           var thisName = name;
+          var isFirst = true;
           tree.children.forEach(function(category){
             var name = category.name;
             var children = category.children;
@@ -29,8 +30,16 @@
               <%
                 children.forEach(function(item){
                   %>
-                  <a href="<%=item.name%>" class="list-group-item hdchild <%=(item.name==thisName?'nodefocus':'')%>"><%=item.title%></a>
+                  <a href="<%=item.url||item.name%>" class="list-group-item hdchild <%=(item.name==thisName?'nodefocus':'')%>"><%=item.title%>
+                    <%
+                      if(isFirst){
+                        %>
+                        <span class='label label-success'>New</span>
+                        <%
+                      }
+                    %></a>
                   <%
+                  isFirst = false;
                 });
               %>
               </div>

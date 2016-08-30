@@ -20,7 +20,7 @@ var config = {
     title: 'HyperPacer 视频专区',
     url: 'http://v.youku.com/v_show/id_XMTcwMDcxMzI3Ng==.html'
   },
-  titlePicker: function(html){
+  infoPicker: function(html){
     var str = html.split('\n')[0].match(/<!--.+-->/)[0];
     return str.substring(4, str.length-3);
   }
@@ -82,7 +82,14 @@ function readTree(basedir, result){
         var item = {};
         item.name = name.substr(2);
         item.content = fs.readFileSync(path.join(dir_path,name),'utf8');
-        item.title = 'HyperPacer '+config.titlePicker(item.content);
+        var info = config.infoPicker(item.content);
+        try{
+          var infoObj = JSON.parse(info);
+          item.title = infoObj.title;
+          item.url = infoObj.url;
+        } catch(e){
+          item.title = 'HyperPacer ' + info;
+        }
         item.tree = result;
         item.pre = {};
         item.next = {};
