@@ -1,0 +1,45 @@
+<!--Java取样器-->
+<div>
+<div>
+<h1>Java取样器</h1>
+  <h3>功能特色</h3>
+    <p>通过该取样器，测试人员可以控制一个Java类，该类实现了接口org.apache.JMeter.protocol.java.sampler.JavaSamplerClient。通过自己编写该接口的实现，测试人员可以使用JMeter-JCT来实现多线程、输入参数控制和数据收集。</P>
+    <p>下拉菜单中提供了JMeter-JCT在其classpath路径下能够找到的所有此类实现的列表。对应参数在下面的表格中展示，就像实现所定义的那样。这里提供了两个简单的例子(JavaTest和SleepTest)。</p>
+<hr><h3>参数详解</h3>
+<div class="alert alert-warning" role="alert">
+<strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+</div>
+<p><img class="img-responsive" alt="JDBC连接配置配置界面" src="image/JavaTestSamplerControl.png"></p>
+
+<p><strong>类名称：</strong>
+  <p style="padding-left:80px">JavaSamplerClient接口的特定实现，用于被取样</p>
+</p>
+<p><strong>Sleep_Time:</strong>
+  <p style="padding-left:80px">休眠时间（以ms为单位）</p>
+</p>
+<p><strong>Sleep_Mask:</strong>
+  <p style="padding-left:80px">添加的"randomness"数量：</p>
+  <p style="padding-left:80px">sleep time以如下方式计算：</p>
+  <p style="padding-left:80px">totalSleepTime = SleepTime + (System.currentTimeMillis() % SleepMask)
+</p>
+</p>
+<p><strong>Label:</strong>
+  <p style="padding-left:80px">使用的标签。如果提供，则覆盖名称</p>
+</p>
+<p><strong>ResponseCode:</strong>
+  <p style="padding-left:80px">如果提供，则设置SampleResult ResponseCode.</p>
+</p>
+<p><strong>ResponseMessage:</strong>
+  <p style="padding-left:80px">如果提供，则设置SampleResult ResponseMessage.</p>
+</p>
+<p><strong>Status:</strong>
+  <p style="padding-left:80px">如果提供，则设置SampleResult Status。如果值是"OK"，则状态就设置为成功，否则这次取样会标记为失败。</p>
+</p>
+<p><strong>SamplerData:</strong>
+  <p style="padding-left:80px">如果提供，则设置SampleResult SamplerData.</p>
+</p>
+<p><strong>ResultData:</strong>
+  <p style="padding-left:80px">如果提供，则设置SampleResult ResultData.</p>
+</p>
+</div>
+</div>

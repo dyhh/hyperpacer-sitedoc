@@ -1,0 +1,40 @@
+<!--TCP取样器-->
+<div>
+<div>
+<h1>TCP取样器</h1>
+  <h3>功能特色</h3>
+    <p>TCP取样器会打开一个到指定服务器的TCP/IP连接。它接着会发送文本，并等待一个响应。如果选中了“重用连接”复选框，套接字（socket）将被关闭。下一次取样时另一个套接字（socket）将被重新打开。</p>
+    <p>如下属性可以被用来控制取样器的操作：</p>
+    <p>•	tcp.status.prefix：状态码之前的文本</p>
+    <p>•	tcp.status.suffix：状态码之后的文本</p>
+    <p>•	tcp.status.properties：属性文件名，用于将状态码转换为消息</p>
+    <p>•	tcp.handler：TCP处理类的名称(默认为TCPClientImpl)，只有当取样器GUI中没有指定时才生效</p>
+    <p>处理连接的类有GUI定义，如果没有定义则使用属性tcp.handler的设置。如果还是没有找到，则在org.apache.JMeter.protocol.tcp.sampler包中搜索。</p>
+    <p>•	TCPClientImpl</p>
+    <p>•	BinaryTCPClientImpl</p>
+    <p>•	LengthPrefixedBinaryTCPClientImpl</p>
+
+  <hr><h3>配置界面</h3>
+</div>
+
+<div class="alert alert-warning" role="alert">
+<strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+</div>
+
+<div style="font-family:Microsoft YaHei">
+<p><img class="img-responsive" alt="TCP取样器配置界面" src="image/TCPSamplerControl.png"></p>
+<h4>参数详解</h4>
+<p><strong>TCPClient 类名:</strong>TCPClient类的名称，默认采用属性TCPClientImpl的值</p>
+<p><strong>服务器名称或IP:</strong>TCP服务器的名称或者IP地址</p>
+<p><strong>端口号：</strong>使用的端口号</p>
+<p><strong>连接：</strong>连接超时(以毫秒为单位，默认为0)</p>
+<p><strong>响应：</strong>响应超时 (以毫秒为单位，默认为0)</p>
+<p><strong>重用连接:</strong>如果选中该复选框，则连接将一直保持打开状态。否则数据读取后，连接将被关闭</p>
+<p><strong>关闭连接:</strong>如果选中该复选框，当运行完取样后连接将会被关闭</p>
+<p><strong>设置无延迟：</strong>参考java.net.Socket.setTcpNoDelay()。如果选中该复选框，则Nagle算法会失效，否则将使用Nagle算法</p>
+<p><strong>SO_LINGER：</strong>启用/禁用SO_LINGER，其中指定了创建一个套接字时的逗留时间。如果测试人员设定"SO_LINGER" 的值是0，这会阻止大量的套接字停留在TIME_WAIT 状态</p>
+<p><strong>结束行(EOL) 字节值：</strong>行尾字节值，将其设置为-128到+127范围之外的值跳过eol检查。测试人员可以在JMeter.properties文件中，和eolByte属性一起设定。如果在TCP取样器配置元件和JMeter.properties文件中都设置了，那么会使用TCP取样器配置元件中设置的值</p>
+<p><strong>要发送的文本：</strong>待发送文本</p>
+
+</div>
+</div>

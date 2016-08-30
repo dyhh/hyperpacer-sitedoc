@@ -1,0 +1,20 @@
+<!--SOAP/XML-RPC请求-->
+<div>
+<div >
+<h1>SOAP/XML-RPC请求</h1>
+  <h3>功能特色</h3>
+    <p>通过该取样器，可以发送一个SOAP请求到某个webservice。另外它还能基于HTTP发送XML-RPC。它会创建一个HTTP POST请求，并将指定的XML作为POST内容。要改变默认的"Content-type"--"text/xml"，可以使用一个信息头管理器。请注意该取样器会使用所有来自信息头管理器的信息头。如果取样器中指定了SOAP action，则会覆盖信息头管理器中的任何SOAPaction。SOAP取样器与Web Service取样器最大的区别在于，SOAP使用原始的POST请求，并不要求遵循SOAP 1.1。</p>
+    <p><strong  class="notice">请注意：</strong>该取样器不默认使用截取编码（chunked encoding）。对于屏幕输入，它目前总是使用数据的大小。文件输入则使用Java确定的文件长度。在某些操作系统上，取样器并不适合于所有文件。在这种情况下，可以为其添加一个子信息头管理器，并将Content-Length设置为文件的实际长度，或者将Content-Length设置为-1（针对chunked encoding）。</p>
+  <hr><h3>配置界面</h3>
+</div>
+
+<div class="alert alert-warning" role="alert">
+<strong >注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+</div>
+
+<div style="font-family:Microsoft YaHei">
+<p><img class="img-responsive" alt="SOAP/XML-RPC请求配置界面" src="image/SoapSamplerControl.png"></p>
+
+
+</div>
+</div>

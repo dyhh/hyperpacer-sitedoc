@@ -1,0 +1,35 @@
+<!--流程控制器-->
+<div>
+
+<div>
+<h1>流程控制器</h1>
+  <h3>功能特色</h3>
+    <p>使用流程控制器对流程进行控制。</p>
+  <h3>配置界面</h3>
+</div>
+
+<div class="alert alert-warning" role="alert">
+<strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+</div>
+
+<div style="font-family:Microsoft YaHei">
+<p><img class="img-responsive" alt="配置界面" src="image/FlowControllerNode.png"></p>
+<h4>参数详解</h4>
+<p>包含3种控制器</p>
+<p><strong style="color:#708090">（1）CriticalSectionController（临界区控制器）</strong>
+  <p>临界区控制器保证其下的子元件（取样器、控制器等）在同一时间只能被一个线程执行，因为在临界区控制器下的子元件执行之前，此临界区控制器下的子元件就会被锁定，直到子元件执行完成，才会解锁，被下一个线程执行。</p>
+  <p style="padding-left:30px"><strong>锁名称:</strong>锁由控制器控制，确保用户可以在不相关的部分使用不同的锁名称</p>
+</p>
+<p><strong style="color:#708090">（2）TestFragmentController（测试片段控制器）</strong>
+  <p>测试片段控制器本身不被执行，当是模块控制器或被其他控制器所引用时才被执行。</p>
+</p>
+<p><strong style="color:#708090">（3）TransactionController（事务控制器）</strong>
+  <p>会产生一个额外的取样，用于将测试工程中的特定部分组织成一个事务。</p>
+  <p>在有些情况下，一个用户操作可能需要多个取样来模拟，此时，使用事务控制器，可以更准确地得到该用户操作的性能指标，如响应时间等。</p>
+  <p style="padding-left:30px"><strong>汇总统计:</strong>如果勾选，就会产生一个取样，作为其他取样的父取样，否则产生的取样是一个独立取样</p>
+  <p style="padding-left:30px"><strong>包含定时器、预处理和后置处理延迟:</strong>在产生的取样中是否包含定时器、预处理和后置处理延迟。默认是否</p>
+
+</p>
+
+</div>
+</div>

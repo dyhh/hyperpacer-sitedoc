@@ -1,0 +1,61 @@
+<!--检查点-->
+<div>
+<h1>检查点</h1>
+    <p>为了提高测试结果的准确性，必须保证每一个取样器返回与预期一致的响应结果，尤其在Http协议中，每个Http请求发送成功后，只要服务器返回200的状态码，就认为是执行成功，
+    实际上返回的响应中可能是请求处理失败的错误提示，从逻辑正确性上来说，这个请求是失败了的，
+    得到的测试数据也不是我们真正期望的。</p>
+    <p>检查点用来对取样器返回的结果进行逻辑正确性检查，如通过判断发现响应中存在某个我们期望的特定文本，则认为取样成功，否则失败。</p>
+    <hr>
+  <h4>配置界面</h4>
+  <div class="alert alert-warning" role="alert">
+  <strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+  </div>
+<p><img class="img-responsive" alt="检查点配置界面" src="image/AssertionControl.png"></p>
+<h4>参数详解</h4>
+<p>
+  <strong>取值范围：</strong>
+  设置进行检查点校验的取样器范围
+  <p style="padding-left:80px"><strong>•	父取样器：</strong> 检查点仅应用于父取样器</p>
+  <p style="padding-left:80px"><strong>•	子取样器：</strong> 检查点仅应用于子取样器</p>
+  <p style="padding-left:80px"><strong>•	所有取样器：</strong> 检查点应用于所有取样器</p>
+</p>
+<p>
+  <strong>检查范围：</strong>
+  此选项可以设定测试的响应域。
+  <p style="padding-left:80px"><strong>•	Text Response：</strong>来自服务器的响应文本，即主体，不包括任何HTTP头</p>
+  <p style="padding-left:80px"><strong>•	Document(text)：</strong>从不同类型的文档中提取的文本</p>
+  <p style="padding-left:80px"><strong>•	URLSampled</strong></p>
+  <p style="padding-left:80px"><strong>•	Response Code：</strong>例如200</p>
+  <p style="padding-left:80px"><strong>•	Response Message：</strong>例如OK</p>
+  <p style="padding-left:80px"><strong>•	Response Headers：</strong>包括设置的Cookie头(如果有的话)</p>
+</p>
+<p>
+  <strong>忽略响应状态：</strong>
+  将响应的初始状态设置为成功。
+  <p style="padding-left:80px ">
+  HTTP响应状态在4xx和5xx范围内，通常被认定为失败。"忽略响应状态"设置为true，可以在进行进一步检查之前将响应状态强制设置为成功。请注意，这种设置将会导致清除之前任何失败的检查点，
+  所以请确保这只是设置在第一个检查点上。
+  </P>
+</P>
+<p>
+  <strong>匹配规则：</strong>
+  设定使用哪种模式测试文本。
+  <p style="padding-left:80px"><strong>•	包含：</strong>文本中包含正则表达式</p>
+  <p style="padding-left:80px"><strong>•	完全匹配：</strong>整个文本能够完全匹配正则表达式</p>
+  <p style="padding-left:80px"><strong>•	相等：</strong>整个文本等于匹配字符串（区分大小写）</p>
+  <p style="padding-left:80px"><strong>•	包含子字符串：</strong>文本中包含匹配字符串（区分大小写）</p>
+  <p style="padding-left:80px"><strong>•	不包含：</strong>文本中不包含正则表达式</p>
+  <p style="padding-left:80px"><strong>•	不完全匹配：</strong>文本不能够完全匹配正则表达式</p>
+  <p style="padding-left:80px"><strong>•	不相等：</strong>文本不等于匹配字符串（区分大小写）</p>
+  <p style="padding-left:80px"><strong>•	不包含子字符串：</strong>文本中不包含匹配字符串（区分大小写）</p>
+  <p><strong style="padding-left:80px" class="notice">注意！</strong>
+    相等和子字符串模式使用的是纯字符串，不是正则表达式。</p>
+</p>
+<p>
+  <strong>匹配项列表：</strong>
+  被测试的匹配项列表。
+  <p style="padding-left:80px">
+ 分别测试每个匹配项。如果一个匹配项失败，那么不会继续检查下面的匹配项。添加一个设置多种匹配项的检查点和添加多个只设置一种匹配项的检查点，效果是一样的（假设其他的选项是一样的）。
+  </P>
+</P>
+</div>

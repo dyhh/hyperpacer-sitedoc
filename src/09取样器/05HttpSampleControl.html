@@ -1,0 +1,94 @@
+<!--HTTP请求-->
+<div>
+<div>
+<h1>HTTP请求</h1>
+  <h3>功能特色</h3>
+    <p>通过该测试元件，HyperPacer可以发送一个HTTP/HTTPS请求到Web服务器。另外，该测试元件还能解析HTML文件以便寻找图片及其他内嵌的资源，并发送HTTP请求来获取它们。以下类型的内嵌资源将被接收：</p>
+      <p style="padding-left:30px">•images</p>
+      <p style="padding-left:30px">•applets</p>
+      <p style="padding-left:30px">•stylesheets</p>
+      <p style="padding-left:30px">•external scripts</p>
+      <p style="padding-left:30px">•frames, iframes</p>
+      <p style="padding-left:30px">•background images (body, table, TD, TR)</p>
+      <p style="padding-left:30px">•background sound</p>
+    <p>一般使用录制来创建HTTP请求，这样做可以节约性能测试脚本开发时间，特别是测试人员需要创建很多HTTP请求，而HTTP请求携带很多参数时。</p>
+    <p>如果请求用到了cookies，还需要HTTP Cookie管理器。也可以将HTTP Cookie管理器添加到HTTP请求。如果测试人员有多个HTTP请求需要校验或者cookies，那么就将这些测试元件添加到测试场景。如此，所有HTTP请求测试元件就会共享相同的校验管理器和cookie管理器。</p>
+
+  <hr><h3>配置界面</h3>
+</div>
+
+<div class="alert alert-warning" role="alert">
+<strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+</div>
+
+<div style="font-family:Microsoft YaHei">
+<p><img class="img-responsive" alt="HTTP请求配置界面" src="image/HttpSampleControl1.png"></p>
+<p><img class="img-responsive" alt="HTTP请求配置界面" src="image/HttpSampleControl2.png"></p>
+<h4>参数详解</h4>
+<strong style="color:#4682b4">基础设置参数</strong>
+<p><strong>服务器名称或IP（Web服务器）：</strong>
+  <p style="padding-left:20px">Web服务器的域名或者IP地址，例如： www.example.com[不包含前缀http://]。 请注意：如果“Host”头已经在一个Header Manager中定义，那么这个将被作为虚拟主机名。</p>
+</p>
+<p><strong>端口号（Web服务器）：</strong>Web服务器监听的端口号，默认为80</p>
+<p><strong>连接超时：</strong>连接超时时长，等待某个连接打开的毫秒数</p>
+<p><strong>响应超时：</strong>
+  <p style="padding-left:20px">响应超时时长，等待某个响应的毫秒数。请注意，这适用于一个请求的每一次等待。如果服务器响应分为几个块发送，那么整体的花费的时间可能比超时更长。可以用断言来检测需要很长时间才能完成的响应</p>
+</p>
+<p><strong>服务器名称或IP（代理服务器）：</strong>代理服务器的域名或者IP地址[不包含前缀http://]</p>
+<p><strong>端口号（代理服务器）：</strong>代理服务器监听的端口号</p>
+<p><strong>用户名：</strong>代理服务器的用户名（可选）</p>
+<p><strong>密码：</strong>代理服务器的密码（可选）</p>
+<p><strong>实现方式：</strong>Java, HttpClient3.1, HttpClient4。如果没有指定（并且没有通过HTTP请求缺省值定义），那么默认使用HttpClient4实现</p>
+<p><strong>协议：</strong>HTTP、HTTPS或者FILE。默认为HTTP</p>
+<p><strong>方法：</strong>GET、POST、HEAD、TRACE、OPTIONS、PUT、DELETE、PATCH (不支持JAVA实现)</p>
+<p><strong>内容编码：</strong>使用的内容编码(针对POST、 PUT、PATCH和FILE)</p>
+<p><strong>自动重定向：</strong>
+  <p style="padding-left:20px">将潜在的HTTP协议处理器设置为自动跟随跳转，如此HyperPacer就不能看到它们，当然也不会作为取样出现。它应该仅仅被用于GET和 HEAD请求。HttpClient取样器会拒绝将其用于POST或者PUT。另外请注意下面关于cookie和header处理的信息</p>
+</p>
+<p><strong>跟随重定向：</strong>
+  <p style="padding-left:20px">只有当"自动重定向"不生效时，该复选框才起作用。如果选中了该复选框，则HyperPacer取样器会检查响应是否是跳转，如果是跳转就跟随它。初始跳转和接下来的响应会作为附加取样。父取样的URL和数据域从最终取样（非跳转）获取，不过父字节计数及消耗时间会包含所有取样。延迟取至初始响应。请注意HttpClient取样器可能会记录如下信息："Redirect requested but followRedirects is disabled"，这一点可以忽略。
+</p>
+<p style="padding-left:20px">HyperPacer会瓦解'/../segment'格式的路径，无论是在绝对还是相对跳转URLs。例如：http://host/one/../two => http://host/two。如果有必要的话可以禁止这一操作，通过设置HyperPacer 属性httpsampler.redirect.removeslashdotdot=false</p>
+</p>
+<p><strong>持久化连接:</strong>
+  <p style="padding-left:20px">HyperPacer设置连接：keep-alive header。它在默认 HTTP实现中无法正常工作，原因在于连接重用不受用户控制。它能与Apache HttpComponents HttpClient实现一起工作</p>
+</p>
+<p><strong>使用multipart/form-data :</strong>使用一个multipart/form-data或者application/x-www-form-urlencoded post 请求</p>
+<p><strong>浏览器兼容头:</strong>当使用multipart/form-data后，这会导致只有Content-Disposition 头会被发送，而Content-Type和Content-Transfer-Encoding头不会被发送</p>
+<p><strong>路径:</strong>
+  <p style="padding-left:20px">指向访问资源的路径(例如：/servlets/myServlet)。如果资源要求查询字符串参数，将它们添加到下面的"Send Parameters With the Request"片段中。作为特殊情况，如果路径以“http://”或者“https://”开始，那么就作为完整URL使用。在这种情况下，server、port和protocol参数都将被忽略；对于GET和DELETE方法参数将被忽略</p>
+</p>
+<p><strong>参数:</strong>
+  <p style="padding-left:20px">查询字符串会依据测试人员提供的参数列表来产生。每个参数都有名称和值、编码参数的选项、包含或者排除等号的选项（有些应用系统在值为空字符串的时候，不接受等号）。查询字符串会以正确的方式生成，这依赖于测试人员所选择的“Method”（如果测试人员选择GET或者DELETE，查询字符串将被附加到URL后面；如果选择POST或者PUT，那么查询字符串会单独发送）。另外，如果测试人员使用multipart form发送一个文件，那么查询字符串会使用multipart form 规范来创建。请参考下面关于参数处理的更多信息。</p>
+  <p style="padding-left:20px">另外，测试人员可以对每一个参数指定其是否应该被URL编码。如果测试人员不清楚这是什么含义，那么最好选中它。如果测试人员的参数值中包含以下字符，那么通常都要求编码：</p>
+  <p style="padding-left:20px">•	ASCII控制字符</p>
+  <p style="padding-left:20px">•	非ASCII字符</p>
+  <p style="padding-left:20px">•	保留字符：URLs会使用某些字符，定义某些语法。当这些字符在URL中不是作为特殊字符存在的话，则需要被编码，例如：'$', '&', '+', ',' , '/', ':', ';', '=', '?', '@'</p>
+  <p style="padding-left:20px">•	不安全的字符：某些出现在URLs中的字符会因为某些原因被错误解读，这些字符也需要被编码，例如：' ', '<', '>', '#', '%', ...</p>
+</p>
+<strong style="color:#4682b4">高级设置参数</strong>
+
+<p><strong>从HTML文件检索所有嵌套资源:</strong>
+  <p style="padding-left:20px">告诉HyperPacer解析HTML文件，并针对文件中引用的所有images、Java applets、 JavaScript files、CSSs等发送HTTP/HTTPS请求。更多信息请参考下面的内容</p>
+</p>
+<p><strong>并行检索:</strong>使用并发连接池获得嵌入的资源</p>
+<p><strong>连接数:</strong>用来获取嵌入式资源的并发连接池的大小</p>
+<p><strong>URLs匹配规则:</strong>
+  <p style="padding-left:20px">如果存在，则该值必须是正则表达式，用于匹配任何可以找到的内嵌URL。如果测试人员只想下载来自于http://example.com/的内嵌资源，使用表达式 http://example\.com/.*</p>
+</p>
+<p><strong>虚拟网络：</strong></p>
+<p style="padding-left:20px">•	选择IP/主机名：使用特定的IP地址或（本地）主机名</p>
+<p style="padding-left:20px">•	选择设备：选择第一个可用的地址，而这可能是IPv4或IPv6的接口</p>
+<p style="padding-left:20px">•	选择IPv4设备：选择设备名称的IPv4地址(如eth0, lo, em0等)</p>
+<p style="padding-left:20px">•	选择IPv6设备：选择设备名称的IPv6地址(如eth0, lo, em0等)</p>
+<p><strong>使用MD5哈希保存响应</strong>
+  <p style="padding-left:20px">如果选中了该复选框，那么服务器响应不会存储在取样结果中。HyperPacer会计算响应数据的32字符MD5 hash值，代替服务器响应存储在取样结果中。这一选项针对大数据量测试</p>
+</p>
+<p><strong>文件名称:</strong>
+  <p style="padding-left:20px">发送文件的名称。如果保留为空，HyperPacer不发送文件；如果填充了该项，则HyperPacer自动以multipart form形式发送请求。</p>
+  <p style="padding-left:20px">如果是POST、PUT或者PATCH请求，并发送单个文件且'Parameter name'属性被省略了，那么文件作为请求的整个包体发送。例如没有添加封装，这样就允许发送任意包体。这一功能是针对POST请求设计的，另外也用于 PUT 请求。请参考下面关于参数处理的更多信息</p>
+</p>
+<p><strong>参数名称:</strong>Web请求参数"name"的值</p>
+<p><strong>MIME类型:</strong>(例如：text/plain)。如果是 POST、PUT或者PATCH请求且'name'属性被忽略了，或者请求包体仅由参数值构建，那么该域的值将作为请求头content-type 的值</p>
+</div>
+</div>

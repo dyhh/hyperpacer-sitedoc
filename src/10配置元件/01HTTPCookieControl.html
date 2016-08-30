@@ -1,0 +1,32 @@
+<!--HTTPCookie管理器-->
+<div>
+<div>
+<h1>HTTP Cookie管理器</h1>
+  <h3>功能特色</h3>
+    Cookie管理器的两个主要功能：
+    <p>（1）  它像Web浏览器一样存储和发送Cookie。如果有一个HTTP请求和响应中包含有Cookie，Cookie管理器会自动存储Cookie，那么接下来针对特定Web站点的所有请求中都会使用该Cookie。每个HyperPacer线程都有自己的“Cookie存储域”，因此，如果正在测试的Web站点使用Cookie来存储会话信息，那么每个HyperPacer线程都会有自己的会话。请注意这些Cookie不会在Cookie管理器中展示，但可以在HTTP控制台中看到。</p>
+    <p>（2）	手动为Cookie管理器添加一个Cookie，该Cookie会被所有HyperPacer线程所共享。</p>
+  <hr><h3>配置界面</h3>
+</div>
+<div class="alert alert-warning" role="alert">
+<strong>提示!</strong>
+<p>（1）	如果在某个取样器的作用范围内有多个Cookie管理器，那么目前没有办法指定哪个管理器将被使用。另外，存在于某个Cookie管理器中的Cookie，不能被其他Cookie管理器所访问，因此使用多个Cookie管理器需要小心。</p>
+<p>（2）	null值的Cookie默认情况下会被忽略。另外需要注意Cookie名必须是唯一的，如果定义了第二个同名Cookie，那么它就会替换第一个。</p>
+</div>
+<div style="font-family:Microsoft YaHei">
+<p><img class="img-responsive" alt="HTTP Cookie管理器配置界面" src="image/HTTPCookieControl.png"></p>
+<h4>参数详解</h4>
+<p><strong>每次迭代前清除Cookies:</strong>
+    <p style="padding-left:120px">如果勾选，那么在每次主测试场景循环执行后，所有服务器定义的Cookie将被清除。</p>
+</p>
+<p><strong>Cookie管理策略:</strong>
+  <p style="padding-left:120px">Cookie规则将被用于管理Cookie。"compatibility"是默认选项，它应该能满足大多数情况。请参考http://hc.apache.org/httpclient-3.x/cookies.html和http://hc.apache.org/httpclient-3.x/apidocs/org/apache/commons/httpclient/cookie/CookiePolicy.html。【请注意："ignoreCookies" 等同于省略掉Cookie管理器】</p>
+</p>
+<p><strong>实现方式:</strong>
+    <p style="padding-left:120px">HC3CookieHandler (HttpClient 3.1 API)或者HC4CookieHandler (HttpClient 4 API)。默认是HC3CookieHandler。【请注意：如果需要测试一个IPv6地址的网站，那么选择HC4CookieHandler (兼容IPv6)】</p>
+</p>
+<p><strong>存储在管理器中的Cookie:</strong>
+    <p style="padding-left:120px">这给了用户一个机会，即在测试运行期间为所有线程使用硬编码的Cookies。“domain”是服务器的主机名（没有http://），端口号目前将被忽略。</p>
+</p>
+</div>
+</div>

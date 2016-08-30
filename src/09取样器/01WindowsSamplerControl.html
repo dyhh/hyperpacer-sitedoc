@@ -1,0 +1,56 @@
+<!--Windows性能数据收集-->
+<div>
+<div>
+<h1>Windows性能数据收集器</h1>
+  <h3>功能特色</h3>
+    <p>监控负载服务器的运行情况是很重要的。Windows性能数据收集器提供了监控Windows服务器的功能。
+       它能够帮助测试人员监控平台上的CPU、内存、Swap、磁盘I/O和网络I/O。</p>
+  <hr><h3>配置界面</h3>
+</div>
+
+<div class="alert alert-warning" role="alert">
+<strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+</div>
+
+<div style="font-family:Microsoft YaHei">
+<p><img class="img-responsive" alt="Windows性能数据收集器" src="image/WindowsPerformDataSampler.png"></p>
+<h4>参数详解</h4>
+<p><strong>服务器名称或IP：</strong>Web服务器的域名或者IP地址，例如www.example.com[不包括前缀http://]</p>
+<p><strong>域或工作组：</strong>网络资源管理模式</p>
+<p><strong>用户名：</strong>服务器的用户名</p>
+<p><strong>密码：</strong>服务器的密码</p>
+<p><strong>取样间隔(s)：</strong>取样间隔时间，默认为1s</p>
+<p><strong>取样条数：</strong>每次取样的条数，默认为10条</p>
+<p><strong>验证连接：</strong>检验连接是否成功，验证连接成功后才可以进入“资源监控视图”选择性能指标。</p>
+<p><strong>监视指标：</strong></p>
+  <p style="padding-left:30px"><strong>•  CPU</strong></p>
+  <p style="padding-left:30px"><strong>•  CPU Perc</strong></p>
+  <p style="padding-left:30px"><strong>•  Memory</strong></p>
+  <p style="padding-left:30px"><strong>•  Disk</strong></p>
+  <p style="padding-left:30px"><strong>•  Network</strong></p>
+<h4>Windows性能数据收集器环境准备</h4>
+  <p>•  windows要开启Remote Registry与Windows Management Instrumentation服务
+  </p>
+  <p>•  修改安全策略：</p>
+  <p style="padding-left:20px">（1）转到“控制面板”>“管理工具”>“本地安全策略”>“安全设置”>“本地策略”>“安全选项”：</p>
+    <p style="padding-left:30px">•  双击“DCOM”：机器访问限制，弹出模板安全策略设置对话框，单击“编辑安全设置”，添加上面创建的
+      用户，允许远程访问。</p>
+    <p style="padding-left:30px">•  双击“DCOM”：机器开启限制，单击“编辑安全设置”，添加上面创建的
+      用户，允许本地启动、远程启动、本地激活、远程激活。</p>
+  <p style="padding-left:20px">
+（2）Then go to Control Panel > Administrative Tools > Component Services > Computers > right-click My Computer > click Properties > click COM Security tab:
+然后转到“控制面板”>“管理工具”>“组件服务”>“计算机”>右键单击“我的电脑”单击“属性”>“单击”“安全”选项卡：</p>
+    <p style="padding-left:30px">•  在“访问权限”部分中，单击“编辑默认”>添加上面创建的用户，允许“远程访问”</p>
+    <p style="padding-left:30px">•  在启动和激活权限部分>点击编辑默认>添加用户创建的上面，允许“本地启动”、“远程启动”、“本地激活”、“远程激活”</p>
+    <p style="padding-left:30px">（组件服务部分，更准确，你可以去一个特定的组件,并在这授予许可。而不在“我的电脑”进行全面的授权）</p>
+  <p>•  禁用防火墙：</p>
+  <p style="padding-left:20px">有时候Windows防火墙如果没有正确配置也会阻止，请确保您已经配置了DCOM协议或关掉防火墙。
+    请注意，防火墙问题也将阻止所有DCOM Windows应用程序失败。</p>
+  <p>•  window2008系统注册表越狱（高版本的win）：</p>
+    <p style="padding-left:20px">需要修改regedit中HKEY_CLASSES_ROOT\CLSID\{76A64158-CB41-11D1-8B02-00600806D9B6}的权限，windows2008不再给Administrators完全控制权。</p>
+    <p style="padding-left:20px">下载SetACL.exe，下载地址：http://files.helgeklein.com/downloads/SetACL/current/SetACL%20(executable%20version).zip</p>
+    <p style="padding-left:20px">set_wmi_reg_acl.cmd</p>
+    <p><img class="img-responsive" alt="示例" src="image/windowsdemo.png"></p>
+    <p style="padding-left:20px">以超级管理员身份执行这个cms，就会把owner与完全控制权限授予Administrators组</p>
+</div>
+</div>

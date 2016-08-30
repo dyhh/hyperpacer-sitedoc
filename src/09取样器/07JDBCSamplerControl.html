@@ -1,0 +1,59 @@
+<!--JDBC请求-->
+<div>
+<div>
+<h1>JDBC请求</h1>
+  <h3>功能特色</h3>
+    <p>可以发送一个JDBC请求（一条SQL查询）到某个服务器。不过在使用该取样器之前，必须首先初始化JDBC连接配置元件。</p>
+    <p>如果提供了变量名列表，则这些变量将由Select操作返回数据行的对应列(如果提供了变量名)的值来初始化，并且返回数据行的总数也会保存下来。例如，假设Select操作返回2行3列数据，而变量列表是A,C，那么如下变量将被初始化：</p>
+      <p style="padding-left:40px">A_#=2 (number of rows)</p>
+      <p style="padding-left:40px">A_1=column 1, row 1</p>
+      <p style="padding-left:40px">A_2=column 1, row 2</p>
+      <p style="padding-left:40px">C_#=2 (number of rows)</p>
+      <p style="padding-left:40px">C_1=column 3, row 1</p>
+      <p style="padding-left:40px">C_2=column 3, row 2</p>
+    <p>如果Select操作返回0行数据，那么A_#和C_#变量应该被设置为0，其他变量都不应该被设置。</p>
+    <p>如果有必要，旧值将被清除，例如，如果前一个select操作返回6行数据，而后一个select操作仅返回3行数据，那么4、5、6行对应的变量将被删除。</p>
+<hr>  <h3>配置界面</h3>
+</div>
+
+<div class="alert alert-warning" role="alert">
+<strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+</div>
+
+<div style="font-family:Microsoft YaHei">
+<p><img class="img-responsive" alt="配置界面" src="image/JDBCSamplerControl.png"></p>
+<h4>参数详解</h4>
+<p><strong>数据源名称:</strong>连接池绑定的HyperPacer变量的名称。该项参数必须与JDBC连接配置配置元件中的'数据源名称'域相同</p>
+<p><strong>语句类型:</strong>根据操作类型来设置该参数：
+  <p style="padding-left:60px">•	Select Statement</p>
+  <p style="padding-left:60px">•	DML Statement：这可以用于插入数据</p>
+  <p style="padding-left:60px">•	Callable Statement</p>
+  <p style="padding-left:60px">•	Prepared Select Statement</p>
+  <p style="padding-left:60px">•	Prepared DML Statement：这可以用于插入数据</p>
+  <p style="padding-left:60px">•	Commit</p>
+  <p style="padding-left:60px">•	Rollback</p>
+  <p style="padding-left:60px">•	Autocommit(false)</p>
+  <p style="padding-left:60px">•	Autocommit(true)</p>
+</p>
+<p><strong>SQL语句:</strong>SQL查询语句。不要输入最后的分号。通常没有必要使用{and}来封装执行语句；不过有时候数据库使用非标准的语法，可能会这么做（当使用{}封装语句时，JDBC驱动在必要的时候会自动转换语句） 。例如：
+  <p style="padding-left:60px">•	select * from t_customers where id=23</p>
+  <p style="padding-left:60px">•	CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE (null,?, ?, null, null, null)</p>
+  <p style="padding-left:60px">&#10019;	Parameter values: tablename,filename</p>
+  <p style="padding-left:60px">&#10019;	Parameter types: VARCHAR,VARCHAR</p>
+  <p style="padding-left:60px">第二个例子假定测试人员使用Apache Derby</p>
+</p>
+<p><strong>绑定变量赋值:</strong>以逗号分隔的参数值列表。使用 【NULL】来指明一个NULL参数(如果有必要的话，可以通过定义属性"jdbcsampler.nullmarker"来改变null字符串)。如果任何参数值中包含逗号或者双引号，则参数列表必须用双引号来封装，而且任何内嵌的双引号都必须双倍书写，例如：
+  <p style="padding-left:60px">"Dbl-Quote: "" and Comma: ,"</p>
+  <p style="padding-left:60px">SQL语句中有多少个占位符，这里就必须有多少个参数值</p>
+</p>
+<p><strong>绑定变量类型：</strong>逗号分隔的SQL参数列表(如INTEGER、DATE、 VARCHAR、DOUBLE)。这些类型在java.sql.Types类中定义，可以参考：http://docs.oracle.com/javase/6/docs/api/java/sql/Types.html 。（请注意:HyperPacer会使用JVM动态定义的类型，因此当测试人员使用不同的JVM时，请参考正确的说明文档）。如果可调用的语句有INOUT或者OUT参数，那么就必须使用前缀来加以标识。例如：使用"INOUT INTEGER"来代替"INTEGER"。如果没有特别指明，"IN"是默认有的，例如 "DATE"等同于"IN DATE"。
+  <p style="padding-left:60px">如果参数类型没有在java.sql.Types中找到，那么HyperPacer还支持对应的整数值，例如OracleTypes.CURSOR == -10，测试人员就可以使用"INOUT -10"。</p>
+  <p style="padding-left:60px">SQL语句中有多少个占位符，这里就必须有多少个参数值</p>
+</p>
+<p><strong>返回变量列表：</strong>逗号分隔的变量名列表，变量用于存放Select操作、Prepared Select Statements或者 CallableStatement返回的查询结果。</p>
+<p><strong>返回对象名称：</strong>如果设置这个参数，那么将创建一个对象变量，包含map列表。每个map中，列名作为key，列数据作为value。用法：
+columnValue = vars.getObject("resultObject").get(0).get("Column Name");
+</p>
+<p><strong>超时时间(s)：</strong>SQL操作超时时间。</p>
+</div>
+</div>

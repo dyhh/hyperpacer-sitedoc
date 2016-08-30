@@ -1,0 +1,60 @@
+<!--录制配置-->
+<div>
+<h1>录制配置</h1>
+  <h3>功能特色</h3>
+    <p>用于完成脚本录制前的配置工作。</p>
+  <hr><h3>配置界面</h3>
+<p><img class="img-responsive" alt="录制配置配置界面" src="image/ScriptRecord.png"></p>
+<h4>参数详解</h4>
+<p><strong>测试工程：</strong>选择当前要进行脚本录制的测试工程。</P>
+<p><strong>行为识别：</strong>
+行为识别用于对脚本录制中的请求按指定方式进行智能分组设置，由测试人员按实际需求选择。
+  <p style="padding-left:68px"><strong>•  人工识别：</strong>只对请求进行依次录制，由测试人员手动创建请求分组。建议经验丰富的测试人员使用；</p>
+  <p style="padding-left:68px"><strong>•  智能分割：</strong>按请求时间进行自动分组，每3s一组；</p>
+  <p style="padding-left:68px"><strong>•  识别为步骤：</strong>按录制过程的操作步骤进行自动分组，如登录、注销等；</p>
+  <p style="padding-left:68px"><strong>•  识别为事务：</strong>按事务进行自动分组；</p>
+  <p style="padding-left:68px"><strong>•  识别为首请求：</strong>只录制关键请求，适用于对小型网站或移动App测试；</p>
+</P>
+<p><strong>关联引擎：</strong>当客户端的某个请求是随着服务器端相应动态变化的时候，需要设置关联引擎。如需对DNA项目进行录制，下拉选择DNA关联。</P>
+<p style="padding-left:70px"><strong>注意：</strong>HyperPacer的关联引擎设置目前为定制化功能，如有需求可联系HyperPacer服务组获取关联规则设置服务。</p>
+<p><strong>默认浏览器：</strong>
+选择脚本录制时默认弹出的浏览器类型。并且录制结束后会自动取消浏览器代理。
+  <p style="padding-left:80px"><strong>•  Auto Select:</strong>自动选择，如选择该选项，Windows操作系统会自动调用IE浏览器、Mac操作系统会自动调用Sarafi浏览器、Linux操作系统会自动调用Firefox浏览器；</p>
+  <p style="padding-left:80px"><strong>•  Internet Explorer</strong></p>
+  <p style="padding-left:80px"><strong>•  Google Chrome</strong></p>
+  <p style="padding-left:80px"><strong>•  Mozilla Firefox</strong></p>
+  <p style="padding-left:80px"><strong>•  Mobile APP：</strong>用于移动端App的测试，选择该方式单击“确定”时，会自动弹出“移动应用程序录制提示”。提示在移动端设置代理的方式：
+  	<p style="padding-left:80px">（1）需在运行APP的移动设备上的无线网络设置界面选择显示高级选项，设置为手动代理模式；</p>
+  	<p style="padding-left:80px">（2）填写主机名和端口号，HyperPacer会自动获取本机启动的IP地址和可用的端口号；</p>
+  	<p style="padding-left:80px">（3）录制结束后，需手动取消代理正常上网。</p>
+  </p>
+  <p style="padding-left:80px"><strong>•  Remote Browser：</strong>用于远程测试。选择该方式单击“确定”时，会自动弹出“远程浏览器录制提示”。提示远程浏览器设置代理的方式：
+  	<p style="padding-left:80px">（1）更改浏览器代理服务器设置为手动模式；</p>
+  	<p style="padding-left:80px">（2）填写主机名和端口号，HyperPacer会自动获取本机启动的IP地址和可用的端口号；</p>
+  	<p style="padding-left:80px">（3）录制结束，远程浏览器要手动取消代理才可正常上网。</p>
+  </p>
+</P>
+<p><strong>首页地址：</strong>设置要进行测试的网页地址及打开方式。在首页地址输入框填写要访问测试的网页地址</P>
+	<p style="padding-left:68px">如勾选<strong>自动打开</strong>方式，单击确定弹出浏览器的地址栏会自动输入访问地址，无需手动再次输入；</p>
+	<p style="padding-left:68px">如勾选<strong>排除其它</strong>，录制请求时会自动过滤掉和填入的地址不相关地址的请求，但是如果网站是子域名或跨域名的不建议勾选该选项。</p>
+<p><strong>思考时间：</strong>按指定基准生成思考时间</P>
+	<p style="padding-left:68px">当勾选<strong>自动生成</strong>选项时，会按照设定的基准时间和最大偏差值生成思考时间。</p>
+	<p style="padding-left:68px">默认情况下，基准时间(ms)值为600，最大偏差(ms)值为400。</p>
+<p><strong>资源过滤器：</strong>对动态或静态资源请求进行过滤.</P>
+	<p style="padding-left:68px">默认情况下只勾选<strong>静态资源</strong>，会对请求中的图片、CSS等静态资源进行过滤.</p>
+	<p style="padding-left:68px"><strong>动态资源：</strong>会过滤到js等动态资源，可视实际情况确定是否要勾选动态资源。</p>
+<p><strong>监听端口：</strong>按指定方式配置监听端口。</P>
+	<p style="padding-left:68px">默认情况下选择<strong>随机端口</strong>，HyperPacer会自动生成一个可用的随机端口</p>
+	<p style="padding-left:68px">如选择<strong>固定端口</strong>，可以手动填写可用的端口值，默认的设定值为5188。</p>
+<p><strong>注意：</strong>录制过程中会修改浏览器设置，如果有需要请做好备份，确定前最好关闭所有浏览器，自动打开并初始化成功浏览器可能需要等待几秒！</p>
+<h1>录制控制器</h1>
+  <h3>功能特色</h3>
+    <p>在完成了录制配置设置并单击确定图标，开始脚本录制。会按指定的“默认浏览器”类型自动弹出浏览器及录制控制器。</p>
+  <h3>配置界面</h3>
+<p><img class="img-responsive" alt="录制配置配置界面" src="image/ScriptRecord2.png"></p>
+<h4>参数详解</h4>
+<p>在录制控制器的最上方显示当前进行脚本录制的测试工程>>测试场景>>事务控制器名称，以及占用的端口号；</p>
+<p>并且可以通过显示的请求数和录制数监测录制状态，其中请求数为发出的请求数，录制数为实际录制到的请求数；</p>
+<p>通过左侧按钮图标控制录制进程，单击黄色图标录制暂停，单击红色图标录制停止；</p>
+<p>通过第一个下拉列表可以选择测试工程>>测试场景，第二个下拉选择事务名称，如需要新建事务名，可以直接在该文本区域输入内容按Enter键或点击应用按钮生效。</p>
+</div>

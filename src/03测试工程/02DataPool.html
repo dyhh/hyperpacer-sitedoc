@@ -1,0 +1,44 @@
+<!--数据池-->
+<div>
+<h1>数据池</h1>
+  <p>数据池功能，实现使用指定数据源中的值来替换参数。HyperPacer支持参数的数据源可以是文件导入、可以是内部生成的变量还可以是来源于数据库中的查询结果，并支持数据管理的功能。</p>
+  <hr>
+  <h4>使用详解</h4>
+  <h5>1、文件导入数据源</h5>
+  <p>文件导入即把已有的数据文件导到数据池中，这种方式也是比较常用的一种，当参数的值没有规律且不太大时通常使用这种方法。HyperPacer目前只支持txt和csv格式的文件导入，读取策略按逐行读取，创建数据文件时每一个参数占一列。</p>
+  <p>Txt文件格式如下（<strong class="notice">注意：</strong>每列以设定的分隔符分隔，默认情况下分隔符为逗号）：</p>
+  <p style="padding-left:30px"><img class="img-responsive"  src="image/datapool1.png"></p>
+  <p>Csv文件格式如下（<strong class="notice">注意：</strong>可以使用记事本、excel、Notepad++等创建）：</p>
+  <p style="padding-left:30px"><img class="img-responsive"  src="image/datapool2.png"></p>
+  <p>创建完数据文件之后，就可以导入文件:</p>
+  <p style="padding-left:30px"><img class="img-responsive"  src="image/datapool3.png"></p>
+  <p style="padding-left:30px">（1）	点击“打开”，选择要导入的文件；</p>
+  <p style="padding-left:30px">（2）	默认情况下会自动将数据文件的第一行读为列标题，如果数据文件中第一行没有设置列标题，则可以在“变量名称”处输入列的名称，注意多列使用分隔符隔开，默认情况下为逗号；</p>
+  <p style="padding-left:30px">（3）	“文件编码”即导入数据文件的编码格式；导入数据文件是按列取数，如需多列可编辑分隔符，默认情况下为逗号；</p>
+  <p style="padding-left:30px">（4）	导入数据文件后，单击“预览”，对导入数据文件的内容及格式进行确认；</p>
+  <p style="padding-left:30px">（5）  单击“保存”，对参数组进行保存，弹出如下所示的提示信息，需填入唯一标识名称</p>
+  <p style="padding-left:30px">（6）	单击“确定”之后，既可以完成对参数组的保存，以待后续使用；</p>
+  <h5>2、数据库导入数据源</h5>
+  <p>当参数的值没有规律且较大时，可以选用这种方式。</p>
+  <p style="padding-left:30px"><img class="img-responsive"  src="image/datapool4.png"></p>
+  <p style="padding-left:30px">（1）	选择要连接的“数据库类型”，HyperPacer目前支持的数据库类型包括：ORACLE、DB2、MYSQL、SQLSERVER四种；</p>
+  <p style="padding-left:30px">（2）	设置数据库的配置信息：数据库“地址”、“数据库名称”、以及连接数据库的“账号”和“密码”；</p>
+  <p style="padding-left:30px">（3）	点击“连接”，可测试数据库是否连接成功；</p>
+  <p style="padding-left:30px">（4）	连接成功后，在数据库中输入查询sql语句，点击“预览”可以看到数据库文件的数据；</p>
+  <p style="padding-left:30px">（5）	点击“保存”，对数据库导入的参数组进行保存，以待后续使用。</p>
+  <h5>3、自定义生成数据</h5>
+  <p>支持随机生成大量数据，包括名字、名字拼音、邮箱、身份证四个字段。</p>
+  <p style="padding-left:30px"><img class="img-responsive"  src="image/datapool5.png"></p>
+  <p style="padding-left:30px">（1）	根据实际需要选择要生成“名字”、“邮箱”、“身份证”中的哪些字段；</p>
+  <p style="padding-left:30px">（2）	设定“生成数量”；</p>
+  <p style="padding-left:30px">（3）	“拼音配置”：可以设置名字拼音列的大小写方式；</p>
+  <p style="padding-left:30px">（4）  如勾选“按文件”，即选择“名字”列数据由文件导入；<strong class="notice">注意：</strong>自动识别文件中的一行内容为一个中文名；</p>
+  <p style="padding-left:30px">（5）“邮箱配置”：设置邮箱的长度范围和后缀；</p>
+  <p style="padding-left:30px">（6）点击“预览”，可以看到自定义生成的数据（<strong class="notice">注意：</strong>预览只能看到前10条数据）；</p>
+  <p style="padding-left:30px">（7）点击“保存”，对自定义生成的参数组进行保存，以待后续使用；</p>
+  <h5>4、数据管理</h5>
+  <p>通过手动输入sql语句对保存的参数组进行增、删、改、查操作。</p>
+  <p style="padding-left:30px"><img class="img-responsive"  src="image/datapool6.png"></p>
+  <p style="padding-left:30px">在数据管理的文本输入区域输入sql语句对保存的参数组进行增、删、改、查操作，在此把保存的每个参数组看作是独立的数据库表对象，每一个参数看作是数据库表中的字段。</p>
+  <p style="padding-left:30px">如果输入的sql语句有误或异常，会在“执行”按钮前的空白区域进行提示。</p>
+</div>

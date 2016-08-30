@@ -1,0 +1,19 @@
+<!--HTTP请求缺省值-->
+<div>
+<div >
+<h1>HTTP请求缺省值</h1>
+  <h3>功能特色</h3>
+  <p>向同一个Web服务器发送多个请求。例如，如果创建了一个测试工程，其中有25个HTTP请求，所有请求都发往相同的服务器，如此可以添加单个HTTP请求缺省值，并填充“Web服务器名称或IP”域。但是，当添加25个HTTP请求取样器时，可以将“Web服务器名称或IP”域保留为空。这些HTTP请求取样器将会从HTTP请求缺省值中继承该域的值。</p>
+  <p>HyperPacer会平等地对待所有端口值；如果在取样器中没有指明端口号，那么就会使用HTTP请求缺省值中的端口号（如果有提供的话）。</p>
+  <hr><h3>配置界面</h3>
+  <div class="alert alert-warning" role="alert">
+  <strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+  </div>
+<p><img class="img-responsive" alt="HTTP请求缺省值配置界面" src="image/HttpDefaultsControl.png"></p>
+<h4>参数详解</h4>
+<p><strong>Web服务器名称或IP:</strong>Web服务器的域名或者IP地址，例如www.example.com（不包括前缀http://）</p>
+<p><strong>Web服务器端口号:</strong>Web服务器监听的端口</p>
+<p><strong>连接超时时间(ms):</strong>连接超时时长。等待连接打开的毫秒数</p>
+<p><strong>响应超时时间(ms):</strong>响应超时时长。等待响应的毫秒数</p>
+</div>
+</div>

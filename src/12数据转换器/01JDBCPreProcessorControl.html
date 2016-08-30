@@ -1,0 +1,30 @@
+<!--JDBC预处理器-->
+<div>
+<div>
+<h1>JDBC预处理器</h1>
+  <h3>功能特色</h3>
+    <p>使用JDBC预处理器，可以在取样运行之前执行一些SQL语句。如果JDBC取样需要从数据库中获取一些数据，那么JDBC预处理器就有用了。</p>
+  <hr><h3>配置界面</h3>
+  <div class="alert alert-warning" role="alert">
+  <strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+  </div>
+<p><img class="img-responsive" alt="JDBC预处理器配置界面" src="image/JDBCPreProcessorControl.png"></p>
+<h4>参数详解</h4>
+<p><strong>数据源名称：</strong>对应JDBC连接配置里的名称。</p>
+<p><strong>语句类型：</strong>选择要执行的sql语句类型。</p>
+<p><strong>SQL语句：</strong>可以编辑或粘贴sql语句，但是没有语法自动检查，最好是在其他地方调试好后再粘过来，避免因为拼写错误影响后续处理</p>
+<p><strong>绑定变量赋值:</strong>以逗号分隔的参数值列表。使用 【NULL】 来指明一个NULL参数(如果有必要的话，可以通过定义属性"jdbcsampler.nullmarker"来改变null字符串)。如果任何参数值中包含逗号或者双引号，则参数列表必须用双引号来封装，而且任何内嵌的双引号都必须双倍书写，例如：
+  <p style="padding-left:60px">"Dbl-Quote: "" and Comma: ,"</p>
+  <p style="padding-left:60px">SQL语句中有多少个占位符，这里就必须有多少个参数值</p>
+</p>
+<p><strong>绑定变量类型：</strong>逗号分隔的SQL参数列表(如INTEGER、DATE、 VARCHAR、DOUBLE)。这些类型在java.sql.Types类中定义，可以参考：http://docs.oracle.com/javase/6/docs/api/java/sql/Types.html 。（请注意:HyperPacer会使用JVM动态定义的类型，因此当测试人员使用不同的JVM时，请参考正确的说明文档）。如果可调用的语句有INOUT或者OUT参数，那么就必须使用前缀来加以标识。例如：使用"INOUT INTEGER"来代替"INTEGER"。如果没有特别指明，"IN"是默认有的，例如 "DATE"等同于"IN DATE"。
+  <p style="padding-left:60px">如果参数类型没有在java.sql.Types中找到，那么HyperPacer还支持对应的整数值，例如OracleTypes.CURSOR == -10，测试人员就可以使用"INOUT -10"。</p>
+  <p style="padding-left:60px">SQL语句中有多少个占位符，这里就必须有多少个参数值</p>
+</p>
+<p><strong>返回变量列表：</strong>逗号分隔的变量名列表，变量用于存放Select操作、Prepared Select Statements或者 CallableStatement返回的查询结果。</p>
+<p><strong>返回对象名称：</strong>如果设置这个参数，那么将创建一个对象变量，包含map列表。每个map中，列名作为key，列数据作为value。用法：
+columnValue = vars.getObject("resultObject").get(0).get("Column Name");
+</p>
+<p><strong>超时时间(s)：</strong>SQL操作超时时间。</p>
+</div>
+</div>

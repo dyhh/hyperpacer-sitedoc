@@ -1,0 +1,143 @@
+<!--数据抽取器-->
+<div>
+<h1>数据抽取器</h1>
+  <h3>适用场景</h3>
+    <p>在动态交互应用系统界面上触发的任意一个动作，往往有一系列连贯的请求组成，尤其是一些依赖上下文的流程性动作中，由上一个请求的响应结果数据来生成
+    下一个请求的输入数据，即在发送下一个请求前，从当前请求的响应结果中提取指定的数据，来构造下一个请求的数据包。在界面操作上，这个过程是很简单的，上一个请求
+    返回的结果会渲染在界面上，用户只需要在对应的数据项上点击数据，即完成动作。在构造测试脚本的过程中，没有界面渲染和交互操作的过程，选取指定的数据进行操作
+    依赖于对请求响应数据包的分析和处理，数据抽取器用来提取响应中的特定数据，提取成功后保存到指定变量中，在所有调用到此变量的请求中，生成请求需要的数据。</p>
+<hr>
+  <h3>功能特色</h3>
+    <p>支持多种数据提取引擎，如正则表达式、CSS选择器、Json、Xpath等</p>
+    <p>提供表达式生成助手，便于快速生成提取数据的表达式</p>
+    <hr>
+  <h3>配置界面</h3>
+</div>
+
+<div class="alert alert-warning" role="alert">
+<strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+</div>
+
+<div style="font-family:Microsoft YaHei">
+<p><img class="img-responsive" alt="数据抽取器配置界面" src="image/DataExtractorControl.png"></p>
+<h4>参数详解</h4>
+<p><strong>变量名称：</strong>HyperPacer变量名，抽取数据需要保存到的变量名称。</p>
+<p><strong>缺省值：</strong>如果抽取失败，那么变量将被设置为默认值。</p>
+<p><strong>匹配模式：</strong>指明使用哪一次匹配。支持手动输入和右侧下拉选择。</p>
+  <p style="padding-left:70px"><strong>•  -1:</strong>表示将公式能够匹配到的数据全部提取，作为数组存储，变量使用的时候若不加索引后缀，则只使用缺省值的数据。若加上索引后缀，则指定是几，取对应的第几个取到的数据项。例如变量名称为name，${name_2}便是name对应表达式在对应的响应数据中匹配到的第二个数据项。</p>
+  <p style="padding-left:70px"><strong>•  0:</strong>表示将公式能够匹配到的数据随机选择一个匹配项。</p>
+  <p style="padding-left:70px"><strong>•  1及以上数据:</strong>表示将公式能匹配的到的数据项，特定索引的数据进行提取。即写几，选择第几个匹配到的数据项，此种类型下，数据项的使用不再加索引后缀，直接写变量名即可。</p>
+<p><strong>表达式生成助手:</strong></p>
+<p style="padding-left:70px"><strong>•  取数引擎：</strong>用以明确公式的类型。选用哪种引擎，就用对应的引擎对公式进行解析和数据提取。提供正则表达式、xPath、CSS/JQuery、JSON四种规则表达式的类型。</p>
+<p style="padding-left:70px"><strong>•  基本公式：</strong>选择完取数引擎的类型后，会有该类型的公式备选项在左侧备选树中列出。</p>
+<p style="padding-left:70px"><strong>•  参数：</strong>对应左侧的基本公式使用，如果公式中含有需要配置的部分，如Tag名称，属性名称，属性值之类。则会在备选树右侧列出相关的文本框供用户填写。。</p>
+<p><strong>取数表达式：</strong>点击生成，按选择的基本公式项生成内容；也可直接手动输入取数表达式。</p>
+<p><strong class="notice">注意：</strong>
+  <p>（1）如在没有填写参数的情况下直接双击备选树中的节点，则追加的公式中会有${变量名称}这样类型的参数需要替换，需要手工在取数表达式的编辑显示区域去做编辑调整。</span>
+  <p>（2）由于单一公式可能不能满足实际的抽取需要，需要组合多个公式才能满足实际的抽取需求，每次点击生成均会将当前定位的公式在取数表达式编辑区光标定位的位置进行追加。</p>
+</p>
+<p><strong>清理：</strong>清空取数表达式文本域。</p>
+<p><strong>生成：</strong>基于表达式生成助手中选择的公式和填写的参数，自动生成表达式</p>
+<p><strong>校验：</strong>检查取数表达式是否有语法错误。校验结果在取数表达式文本框下面的空白区域显示，有公式正确，公式错误，公式类型与当前所选类型不符三种。最后一种表示当前的公式在语法上满足四种取数引擎中的一种语法，但不是当前所选的取数引擎，如确实取数引擎选择无误，则需要人工检查公式在当前取数引擎的语境下的正确性。</p>
+<p>检查无误后，点击保存。当虚拟用户执行到此节点时，便会用保存的公式从响应数据抽取对应的数据项保存到对应的变量中去。</p>
+<h4>取数引擎示例</h4>
+<p><strong>（1）xPath：</strong>当前xPath只支持从XML结构的响应中提取数据。</p>
+  <p style="padding-left:70px"><img class="img-responsive"  src="image/xPath.png" style="weight:500px;height:250px"></p>
+  <p style="padding-left:70px"><table border="1">
+    <tr>
+      <th>xPath取数表达式</th>
+      <th>结果</th>
+    </tr>
+    <tr>
+      <td>bookstore</td>
+      <td>选取 bookstore 元素的所有子节点。</td>
+    </tr>
+    <tr>
+      <td>bookstore/book</td>
+      <td>选取根元素 bookstore。注释：假如路径起始于正斜杠( / )，则此路径始终代表到某元素的绝对路径！</td>
+    </tr>
+    <tr>
+      <td>//book</td>
+      <td>选取所有 book 子元素，而不管它们在文档中的位置。</td>
+    </tr>
+    <tr>
+      <td>bookstore//book</td>
+      <td>选择属于 bookstore 元素的后代的所有 book 元素，而不管它们位于 bookstore 之下的什么位置。</td>
+    </tr>
+    <tr>
+      <td>//@lang</td>
+      <td>选取名为 lang 的所有属性。</td>
+    </tr>
+    <tr>
+      <td>/bookstore/book[1]</td>
+      <td>选取属于 bookstore 子元素的第一个 book 元素。</td>
+    </tr>
+    <tr>
+      <td>/bookstore/book[last()]</td>
+      <td>选取属于 bookstore 子元素的最后一个 book 元素。</td>
+    </tr>
+    <tr>
+      <td>/bookstore/book[position()<3]</td>
+      <td>选取最前面的两个属于 bookstore 元素的子元素的 book 元素。</td>
+    </tr>
+    <tr>
+      <td>/bookstore/book[price>35.00]</td>
+      <td>选取 bookstore 元素的所有 book 元素，且其中的 price 元素的值须大于 35.00。</td>
+    </tr>
+    <tr>
+      <td>//*</td>
+      <td>文档中所有元素</td>
+    </tr>
+    <tr>
+      <td>//title | //price</td>
+      <td>选取文档中的所有 title 和 price 元素。</td>
+    </tr>
+  </table></p>
+<p><strong>（2）Json：</strong></p>
+  <p style="padding-left:70px"><img class="img-responsive"  src="image/json.png" style="weight:500px;height:440px"></p>
+  <p style="padding-left:70px"><table border="1">
+    <tr>
+      <th>Json取数表达式</th>
+      <th>结果</th>
+    </tr>
+    <tr>
+      <td>$.store.book[0].title 或者 $['store']['book'][0]['title']</td>
+      <td>store中第一本书的title</td>
+    </tr>
+    <tr>
+      <td>$.store.book[*].author </td>
+      <td>store中所有书的作者</td>
+    </tr>
+    <tr>
+      <td>$..author </td>
+      <td>所有作者</td>
+    </tr>
+    <tr>
+      <td>$.store.* </td>
+      <td>store中所有东西，可能是书或自行车</td>
+    </tr>
+    <tr>
+      <td>$..book[2]</td>
+      <td>第三本书</td>
+    </tr>
+    <tr>
+      <td>$..book[(@.length-1)] 或者 $..book[-1:] </td>
+      <td>最后一本书</td>
+    </tr>
+    <tr>
+      <td>$..book[0,1]  或者  $..book[:2] </td>
+      <td>前两本书</td>
+    </tr>
+    <tr>
+      <td>$..book[?(@.isbn)] </td>
+      <td>使用isbn号过滤所有图书</td>
+    </tr>
+    <tr>
+      <td>$..book[?(@.price<10)] </td>
+      <td>过滤所有价格小于10的图书</td>
+    </tr>
+    <tr>
+      <td>$..* </td>
+      <td>json结构中的所有元素</td>
+    </tr>
+  </table></p>
