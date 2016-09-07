@@ -1,0 +1,47 @@
+<!--大咖取样器调试-->
+<div>
+
+<div>
+<h1>大咖取样器调试</h1>
+  <h3>适用场景</h3>
+    <p>专供具有代码开发能力的技术大咖们使用，兼容Java、Groovy语法</p>
+    <p>HyperPacer本身提供的一些标准化功能，可能无法满足一些采用私有协议、私有数据包、复杂逻辑处理的需求，这种情况下使用者可以自定义开发取样器，
+    直接调用私密的类库或者自己开发代码进行数据处理。这样既能利用HyperPacer强大的并行处理和数据可视化能力，还能保护自己的私有技术隐私。</p>
+  <hr><h3>功能特色</h3>
+    <p>内置高效动态脚本引擎，代码无须预编译，直接运行，运行过程中自动进行编译缓存管理，提高脚本执行效率</p>
+    <p>提供与HyperPacer运行框架直接交互的系统变量，直接调用就可以使用：</p>
+    <p style="padding-left:17px">vars：变量容器，可以放置或获取所有定义的变量</p>
+    <p style="padding-left:17px">props：组件运行属性容器，可以修改默认属性或增加新的属性</p>
+    <p style="padding-left:17px">ctx：运行上下文对象容器，可以获取当前节点的上下文环境</p>
+    <p style="padding-left:17px">SampleResult：存储运行结果的对象</p>
+    <p style="padding-left:17px">ResponseCode：运行结果状态码</p>
+    <p style="padding-left:17px">ResponseMessage：运行结果输出信息</p>
+    <p style="padding-left:17px">IsSuccess：是否运行成功</p>
+    <p style="padding-left:17px">Label：当前取样器标签名称</p>
+    <p style="padding-left:17px">FileName：脚本文件名称</p>
+    <p style="padding-left:17px">log：日志操作类实例</p>
+    <p style="padding-left:17px">Parameters：获取参数文本框输入</p>
+    <p style="padding-left:17px">sampler：获取当且取样器类的实例</p>
+    <p style="padding-left:17px">prev：获取上一个取样器的执行结果</p>
+  <hr><h3>配置界面</h3>
+</div>
+
+<div class="alert alert-warning" role="alert">
+<strong>注意!</strong> 鼠标悬停在界面中的任意标签或控件上，可以看到详细描述信息。
+</div>
+
+<div style="font-family:Microsoft YaHei">
+<p><img class="img-responsive" alt="配置界面" src="image/GroovySamplerControl.png"></p>
+<h4>参数详解</h4>
+<p><strong>脚本：</strong>可编辑调试信息，在控制台查看。</p>
+  <p>
+    如：
+  </p>
+  <p style="padding-left:80px">
+    log.error(vars.get('变量名称'));
+  </p>
+  <p style="padding-left:80px">
+    log.info('This is a log info');
+  </p>
+</div>
+</div>
